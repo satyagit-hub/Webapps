@@ -13,7 +13,7 @@ pipeline {
       }
     }
 
-   stage { ('check-git-secret')
+   stage  ('check-git-secret'){
           steps {
             sh 'rm trufflehog || true'
             sh 'docker run gesellix/trufflehog --json https://github.com/satyagit-hub/Webapps.git > trufflehog'
