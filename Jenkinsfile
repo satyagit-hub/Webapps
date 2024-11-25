@@ -48,8 +48,6 @@ pipeline {
         }
       }
     }
-    stage ('Post clean up') {
-      steps {
        post {
         // Clean after build
         always {
@@ -61,8 +59,4 @@ pipeline {
                                [pattern: '.propsfile', type: 'EXCLUDE']])
         }
     }
-      }
-    }
-   
-  }
 }  
