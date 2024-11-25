@@ -35,8 +35,8 @@ pipeline {
     }*/
     stage ('build') {
       steps {
-        cleanWs()
         sh 'mvn clean package'
+        cleanWs()
       }
     }
     
