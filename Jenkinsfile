@@ -35,8 +35,9 @@ pipeline {
     }*/
     stage ('build') {
       steps {
-        sh 'mvn clean package'
         cleanWs()
+        checkout scm
+        sh 'mvn clean package'
       }
     }
     
