@@ -28,6 +28,7 @@ pipeline {
         sh 'rm owasp* || true'
         sh 'wget "https://raw.githubusercontent.com/satyagit-hub/Webapps/refs/heads/master/owasp-dependency-check.sh"'
         sh 'chmod +x owasp-dependency-check.sh'
+        sh 'chmod a+w /var/lib/jenkins/OWASP-Dependency-Check'
         sh 'bash owasp-dependency-check.sh'
         //sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/odc-reports/dependency-check-report.xml'
       }
