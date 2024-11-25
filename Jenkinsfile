@@ -38,12 +38,24 @@ pipeline {
         sh 'mvn clean package'
       }
     }
+    
     stage ('Deploy-to-tomcat'){
       steps {
         sshagent(['tomcat']) {
           sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@13.126.172.84:/prod/apache-tomcat-10.1.33/webapps/webapp.war'
         }
       }
+    }
+    post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
+        }
     }
   }
 }  
